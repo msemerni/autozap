@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://placer.atlassian.net"> -->
+  <title>ActivityInfo_Zapolnyator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container" id="container">
+
+    <div class="inputFields">
+    
+      <div class="input">
+        <label for="zone">Zone:</label>
+        <input type="text" name="zone" id="zone" />
+      </div>
+    
+      <div class="input">
+        <label for="oblast">Oblast:</label>
+        <input type="text" name="oblast" id="oblast" />
+      </div>
+    
+      <div class="input">
+        <label for="rayon">Rayon:</label>
+        <input type="text" name="rayon" id="rayon" />
+      </div>
+    
+      <div class="input">
+        <label for="hromada">Hromada:</label>
+        <input type="text" name="hromada" id="hromada" />
+      </div>
+    
+      <div class="input">
+        <label for="settlement">Settlement:</label>
+        <input type="text" name="settlement" id="settlement" />
+      </div>
+    
+    </div>
+
+    <button id="copyButton" class="copyButton">Copy</button>
+    <button id="pasteButton" class="pasteButton">Paste</button>
+    <div class="footerContainer">
+      <button id="helpButton" class="helpButton" title="Help">?</button>
+      <span class="appTitle">ActivityInfo_Zapolnyator</span>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
