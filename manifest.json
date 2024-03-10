@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "VjIra",
-    "description": "by Mykhailo Semernin______________________ Autocomplete fields in Jira from Venues Editor (2022-05-16)",
+    "name": "Zapolnyator",
+    "description": "by Mykhailo Semernin______________________ Autocomplete fields in ActivityInfo (2024-03-10)",
     "version": "1.0",
     "icons": {
         "16": "images/icon_16.png",
@@ -30,7 +30,7 @@
             "64": "images/icon_64.png",
             "128": "images/icon_128.png"
         },
-        "default_title": "VjIra by Mykhailo Semernin",
+        "default_title": "Zapolnyator by Mykhailo Semernin",
         "default_popup": "/popup/popup.html"
     }
 }
