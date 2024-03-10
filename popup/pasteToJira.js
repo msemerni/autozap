@@ -136,7 +136,7 @@ try {
         alert(`${error}\nPaste failed`);
       });
   } else {
-    throw new Error(`Switch to Jira\n(${workJiraURL})\n`);
+    throw new Error(`Switch to ActivityInfo\n(${workJiraURL})\n`);
   }
 } catch (error) {
   alert(`${error}\nPaste failed!`);
