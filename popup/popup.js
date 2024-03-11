@@ -1,16 +1,26 @@
+let isSafeCopyStorageValue = localStorage.getItem("isSafeCopyStorage");
+if (isSafeCopyStorageValue === null) {
+  localStorage.setItem("isSafeCopyStorage", "safe");
+}
+
 const copyBtn = document.getElementById("copyButton");
 const pasteBtn = document.getElementById("pasteButton");
 const helpButton = document.getElementById("helpButton");
+const isSafeCopy = document.getElementById("isSafeCopy");
 
-const myLocation = JSON.parse(localStorage.getItem("myLocation")) || {};
+isSafeCopy.checked = Boolean(localStorage.getItem("isSafeCopyStorage"));
 
-const textInputs = document.querySelectorAll("input");
+const myLocation = JSON.parse(localStorage.getItem("myLocation")) || {location: {}};
+
+const textInputs = document.querySelectorAll(".input input");
+console.log("textInputs", textInputs);
 textInputs.forEach(function (input) {
   input.addEventListener("input", function () {
     myLocation[this.id] = this.value;
     localStorage.setItem("myLocation", JSON.stringify(myLocation));
   });
 });
+console.log("myLocation", myLocation);
 
 const zone = document.getElementById("zone");
 const oblast = document.getElementById("oblast");
@@ -57,6 +67,16 @@ helpButton.addEventListener("click", () => {
   3. Click "Add record" at ActivityInfo
   4. Click "Paste" button
   `);
+});
+
+isSafeCopy.addEventListener("click", () => {
+  if (isSafeCopy.checked) {
+    localStorage.setItem("isSafeCopyStorage", "safe");
+  } else {
+    localStorage.setItem("isSafeCopyStorage", "");
+  }
+
+  // window.close();
 });
 
 const startScriptPaste = () => {
