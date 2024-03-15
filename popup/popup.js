@@ -3,6 +3,7 @@ if (isSafeCopyStorageValue === null) {
   localStorage.setItem("isSafeCopyStorage", "safe");
 }
 
+const newRecordBtn = document.getElementById("newRecordButton");
 const copyBtn = document.getElementById("copyButton");
 const pasteBtn = document.getElementById("pasteButton");
 const helpButton = document.getElementById("helpButton");
@@ -16,7 +17,7 @@ const textInputs = document.querySelectorAll(".input input");
 console.log("textInputs", textInputs);
 textInputs.forEach(function (input) {
   input.addEventListener("input", function () {
-    myLocation[this.id] = this.value;
+    myLocation[this.id] = this.value.trim();
     localStorage.setItem("myLocation", JSON.stringify(myLocation));
   });
 });
@@ -41,6 +42,15 @@ if (storageLocation) {
   hromada.value = storageLocationObj.hromada;
   settlement.value = storageLocationObj.settlement;
 }
+
+newRecordBtn.addEventListener("click", async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: startNewRecord,
+  });
+  // window.close();
+});
 
 copyBtn.addEventListener("click", async () => {
   const myLocation = JSON.parse(localStorage.getItem("myLocation"));
@@ -78,6 +88,16 @@ isSafeCopy.addEventListener("click", () => {
 
   // window.close();
 });
+
+const startNewRecord = () => {
+  const contextScript = document.createElement("script");
+  contextScript.src = chrome.runtime.getURL("/popup/startNewRecord.js");
+  contextScript.onload = function () {
+    this.remove();
+  };
+  (document.head || document.documentElement).append(contextScript);
+};
+
 
 const startScriptPaste = () => {
   const contextScript = document.createElement("script");

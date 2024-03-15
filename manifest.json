@@ -10,10 +10,14 @@
         "64": "images/icon_64.png",
         "128": "images/icon_128.png"
     },
-    "web_accessible_resources": [{
+    "web_accessible_resources": [ {
+        "resources": ["/popup/startNewRecord.js"],
+        "matches": ["<all_urls>"]
+    },
+    {
         "resources": ["/popup/pasteToJira.js"],
         "matches": ["<all_urls>"]
-      }],
+    }],
     "permissions": [
         "tabs",
         "storage",
