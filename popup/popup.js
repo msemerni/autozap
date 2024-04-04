@@ -13,6 +13,8 @@ isSafeCopy.checked = Boolean(localStorage.getItem("isSafeCopyStorage"));
 
 const myLocation = JSON.parse(localStorage.getItem("myLocation")) || {location: {}};
 
+
+
 const textInputs = document.querySelectorAll(".input input");
 console.log("textInputs", textInputs);
 textInputs.forEach(function (input) {
@@ -35,6 +37,9 @@ if (storageLocation) {
   let storageLocationObj = JSON.parse(storageLocation);
 
   console.log("storageLocationObj:", storageLocationObj);
+
+  console.log("storageLocationObj:LOC", storageLocationObj.location);
+
 
   zone.value = storageLocationObj.zone;
   oblast.value = storageLocationObj.oblast;
@@ -89,7 +94,7 @@ isSafeCopy.addEventListener("click", () => {
   // window.close();
 });
 
-const startNewRecord = () => {
+function startNewRecord () {
   const contextScript = document.createElement("script");
   contextScript.src = chrome.runtime.getURL("/popup/startNewRecord.js");
   contextScript.onload = function () {
@@ -99,7 +104,7 @@ const startNewRecord = () => {
 };
 
 
-const startScriptPaste = () => {
+function startScriptPaste () {
   const contextScript = document.createElement("script");
   contextScript.src = chrome.runtime.getURL("/popup/pasteToJira.js");
   contextScript.onload = function () {

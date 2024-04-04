@@ -53,8 +53,8 @@ async function addLocation(locationObj) {
 
   const {zoneInput, oblastInput, rayonInput, hromadaInput, settlementInput} = selectElements();
 
-  console.log("zone", zone);
-  console.log("zoneInput", zoneInput);
+  console.log("locationObj", locationObj);
+  // console.log("zoneInput", zoneInput);
 
   await copyToClipboard(zone);
   await pasteFromClipboardToInput(zoneInput);
@@ -110,13 +110,13 @@ async function pasteFromClipboardToInput(htmlElement) {
 function selectValue(value) {
   let list = document.querySelectorAll(".listpicker")[0];
 
-  console.log("list", list);
+  // console.log("list", list);
 
   let listItems = list.querySelectorAll(".listpicker__item");
 
   listItems.forEach(function (div) {
     if (div.textContent === value) {
-      console.log("div.textContent: ", div.textContent);
+      // console.log("div.textContent: ", div.textContent);
       div.click();
     }
   });
