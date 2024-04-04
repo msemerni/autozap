@@ -19,7 +19,7 @@ const textInputs = document.querySelectorAll(".input input");
 console.log("textInputs", textInputs);
 textInputs.forEach(function (input) {
   input.addEventListener("input", function () {
-    myLocation[this.id] = this.value.trim();
+    myLocation.location[this.id] = this.value.trim();
     localStorage.setItem("myLocation", JSON.stringify(myLocation));
   });
 });
@@ -40,12 +40,13 @@ if (storageLocation) {
 
   console.log("storageLocationObj:LOC", storageLocationObj.location);
 
+  const { location } = storageLocationObj;
 
-  zone.value = storageLocationObj.zone;
-  oblast.value = storageLocationObj.oblast;
-  rayon.value = storageLocationObj.rayon;
-  hromada.value = storageLocationObj.hromada;
-  settlement.value = storageLocationObj.settlement;
+  zone.value = location.zone;
+  oblast.value = location.oblast;
+  rayon.value = location.rayon;
+  hromada.value = location.hromada;
+  settlement.value = location.settlement;
 }
 
 newRecordBtn.addEventListener("click", async () => {

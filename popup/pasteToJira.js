@@ -49,7 +49,7 @@ setTimeout(() => {
 
 
 async function addLocation(locationObj) {
-  const { zone, oblast, rayon, hromada, settlement } = locationObj;
+  const { zone, oblast, rayon, hromada, settlement } = locationObj.location;
 
   const {zoneInput, oblastInput, rayonInput, hromadaInput, settlementInput} = selectElements();
 
