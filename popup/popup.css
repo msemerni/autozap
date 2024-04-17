@@ -59,8 +59,6 @@ img {
   padding: 4px;
 }
 
-
-
 .inputFields {
   display: flex;
   flex-wrap: wrap;
@@ -78,7 +76,8 @@ input[type="text"] {
 }
 
 .copyButton,
-.pasteButton {
+.pasteButton,
+.newRecordButton {
   background: #37bfbf;
   border-radius: 5px;
   border-width: 0;
@@ -86,6 +85,11 @@ input[type="text"] {
   margin: 0 0 6px 0;
   font-family: 'Quantico';
   font-size: 15px;
+}
+
+.newRecordButton {
+  background: #2b5757;
+  /* padding: 0px; */
 }
 
 .copyButton:hover,
@@ -96,6 +100,12 @@ input[type="text"] {
   /* transform: scale(1.05); */
   cursor: pointer;
   color: #d3d3d3;
+}
+
+.newRecordButton:hover {
+  background-color: #253535;
+  cursor: pointer;
+  color: #9f3333;
 }
 
 .footerContainer {
@@ -158,7 +168,8 @@ input[type="text"] {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #3d7e2d;;
+  background-color: #3d7e2d;
+  ;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -176,7 +187,7 @@ input[type="text"] {
 }
 
 input:checked+.slider {
-  background-color: #bf2323 ;
+  background-color: #bf2323;
 }
 
 /* input:focus + .slider {

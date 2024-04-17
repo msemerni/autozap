@@ -1,27 +1,29 @@
-let isSafeCopyStorageValue = localStorage.getItem("isSafeCopyStorage");
-if (isSafeCopyStorageValue === null) {
-  localStorage.setItem("isSafeCopyStorage", "safe");
+let isAddDefaultStorageValue = localStorage.getItem("isAddDefaultStorage");
+if (isAddDefaultStorageValue === null) {
+  localStorage.setItem("isAddDefaultStorage", "");
 }
 
 const newRecordBtn = document.getElementById("newRecordButton");
 const copyBtn = document.getElementById("copyButton");
 const pasteBtn = document.getElementById("pasteButton");
 const helpButton = document.getElementById("helpButton");
-const isSafeCopy = document.getElementById("isSafeCopy");
+const isAddDefault = document.getElementById("isAddDefault");
 
-isSafeCopy.checked = Boolean(localStorage.getItem("isSafeCopyStorage"));
+isAddDefault.checked = Boolean(localStorage.getItem("isAddDefaultStorage"));
 
-const myLocation = JSON.parse(localStorage.getItem("myLocation")) || {location: {}};
+const myLocation = JSON.parse(localStorage.getItem("myLocation")) || {};
 
 const textInputs = document.querySelectorAll(".input input");
-console.log("textInputs", textInputs);
+
 textInputs.forEach(function (input) {
   input.addEventListener("input", function () {
     myLocation[this.id] = this.value.trim();
     localStorage.setItem("myLocation", JSON.stringify(myLocation));
   });
 });
-console.log("myLocation", myLocation);
+
+myLocation.isAddDefaults = Boolean(localStorage.getItem("isAddDefaultStorage"));
+localStorage.setItem("myLocation", JSON.stringify(myLocation));
 
 const zone = document.getElementById("zone");
 const oblast = document.getElementById("oblast");
@@ -33,8 +35,6 @@ let storageLocation = localStorage.getItem("myLocation");
 
 if (storageLocation) {
   let storageLocationObj = JSON.parse(storageLocation);
-
-  console.log("storageLocationObj:", storageLocationObj);
 
   zone.value = storageLocationObj.zone;
   oblast.value = storageLocationObj.oblast;
@@ -71,20 +71,28 @@ pasteBtn.addEventListener("click", async () => {
 
 helpButton.addEventListener("click", () => {
   alert(`
-  1. Paste correct values to input fields from
+  1. Paste the correct values into the input fields in the extension's pop-up window from
      https://www.activityinfo.org/app#form/ck21bf1l6qikskj2/table
-  2. Click "Copy" button
-  3. Click "Add record" at ActivityInfo
-  4. Click "Paste" button
+  2. Go to Activityinfo database
+  3. Click "New" button
+  4. Click the slider if you want to add a default selection
+  4. Click "Copy" button
+  5. Click "Paste" button
   `);
 });
 
-isSafeCopy.addEventListener("click", () => {
-  if (isSafeCopy.checked) {
-    localStorage.setItem("isSafeCopyStorage", "safe");
+isAddDefault.addEventListener("click", () => {
+  let storageLocation = JSON.parse(localStorage.getItem("myLocation"));
+
+  if (isAddDefault.checked) {
+    localStorage.setItem("isAddDefaultStorage", "yes");
+    storageLocation.isAddDefaults = true;
   } else {
-    localStorage.setItem("isSafeCopyStorage", "");
+    localStorage.setItem("isAddDefaultStorage", "");
+    storageLocation.isAddDefaults = false;
   }
+
+  localStorage.setItem("myLocation", JSON.stringify(storageLocation));
 
   // window.close();
 });
@@ -125,14 +133,14 @@ function copyToClipboard(location) {
   bufferDivCopy.remove();
 }
 
-function showCompleteMark () {
+function showCompleteMark() {
   const tick = document.createElement('div');
   tick.classList.add('tick');
   document.body.appendChild(tick);
   tick.style.color = 'green';
   tick.style.opacity = '0.7';
   tick.innerText = '✔';
-  setTimeout(function() {
-      tick.style.display = 'none';
+  setTimeout(function () {
+    tick.style.display = 'none';
   }, 300);
 }
