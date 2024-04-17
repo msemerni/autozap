@@ -89,6 +89,7 @@ input[type="text"] {
 
 .newRecordButton {
   background: #2b5757;
+  color: #37bfbf;;
   /* padding: 0px; */
 }
 
@@ -105,7 +106,7 @@ input[type="text"] {
 .newRecordButton:hover {
   background-color: #253535;
   cursor: pointer;
-  color: #9f3333;
+  color: #ffe2e2;
 }
 
 .footerContainer {
