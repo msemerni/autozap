@@ -108,11 +108,34 @@ function selectValue(value) {
 }
 
 function selectLocationInputs() {
-  let zoneInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
-  let oblastInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
-  let rayonInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
-  let hromadaInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
-  let settlementInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(5) > div > div.field__border > div.field__wrap > input[type=text]");
+  let h4Elements = document.querySelectorAll('h4');
+  let locationsDiv = null;
+  
+  h4Elements.forEach((h4) => {
+      let bdiElement = h4.querySelector('bdi');
+      if (bdiElement && bdiElement.textContent.trim() === 'Ukraine_locations_full') {
+          let nextElement = h4.nextElementSibling;
+          while (nextElement) {
+              if (nextElement.classList.contains('forminput__lookup')) {
+                  locationsDiv = nextElement;
+                  break;
+              }
+              nextElement = nextElement.nextElementSibling;
+          }
+      }
+  });
+  
+  let zoneInput = locationsDiv.querySelector("label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
+  let oblastInput = locationsDiv.querySelector("label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
+  let rayonInput = locationsDiv.querySelector("label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
+  let hromadaInput = locationsDiv.querySelector("label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
+  let settlementInput = locationsDiv.querySelector("label:nth-child(5) > div > div.field__border > div.field__wrap > input[type=text]");
+  
+  // let zoneInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
+  // let oblastInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
+  // let rayonInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
+  // let hromadaInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
+  // let settlementInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(5) > div > div.field__border > div.field__wrap > input[type=text]");
 
   return { zoneInput, oblastInput, rayonInput, hromadaInput, settlementInput };
 }
