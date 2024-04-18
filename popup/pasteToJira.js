@@ -123,6 +123,17 @@ function selectLocationInputs() {
               nextElement = nextElement.nextElementSibling;
           }
       }
+
+      else if (bdiElement && bdiElement.textContent.trim() === 'Locations_1') {
+        let nextElement = h4.nextElementSibling;
+        while (nextElement) {
+            if (nextElement.classList.contains('forminput__lookup')) {
+                locationsDiv = nextElement;
+                break;
+            }
+            nextElement = nextElement.nextElementSibling;
+        }
+    }
   });
   
   let zoneInput = locationsDiv.querySelector("label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
