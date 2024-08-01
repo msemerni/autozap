@@ -40,13 +40,16 @@ setTimeout(() => {
 }, 2000);
 
 async function addLocation(locationObj) {
-  const { zone, oblast, rayon, hromada, settlement, isAddDefaults } = locationObj;
+  const { date, donor, oblast, rayon, hromada, settlement, isAddDefaults } = locationObj;
 
-  const { zoneInput, oblastInput, rayonInput, hromadaInput, settlementInput } = selectLocationInputs();
+  const { dateInput, donorInput, oblastInput, rayonInput, hromadaInput, settlementInput } = selectLocationInputs();
 
-  await copyToClipboard(zone);
-  await pasteFromClipboardToInput(zoneInput);
-  selectValue(zone);
+  await copyToClipboard(date);
+  await pasteFromClipboardToInput(dateInput);
+
+  await copyToClipboard(donor);
+  await pasteFromClipboardToInput(donorInput);
+  selectValue(donor);
 
   await copyToClipboard(oblast);
   await pasteFromClipboardToInput(oblastInput);
@@ -110,10 +113,20 @@ function selectValue(value) {
 function selectLocationInputs() {
   let h4Elements = document.querySelectorAll('h4');
   let locationsDiv = null;
+  let dateDiv = null;
+  let donorDiv = null;
   
   h4Elements.forEach((h4) => {
       let bdiElement = h4.querySelector('bdi');
-      if (bdiElement && bdiElement.textContent.trim() === 'Ukraine_locations_full') {
+
+      console.log("bdiElement: ", bdiElement);
+
+      if (
+        bdiElement && 
+        (bdiElement.textContent.trim() === 'Локация' 
+        || bdiElement.textContent.trim() === 'Локація' 
+        || bdiElement.textContent.trim() === 'Location')
+      ) {
           let nextElement = h4.nextElementSibling;
           while (nextElement) {
               if (nextElement.classList.contains('forminput__lookup')) {
@@ -123,38 +136,24 @@ function selectLocationInputs() {
               nextElement = nextElement.nextElementSibling;
           }
       }
-
-      else if (bdiElement && bdiElement.textContent.trim() === 'Locations_1') {
-        let nextElement = h4.nextElementSibling;
-        while (nextElement) {
-            if (nextElement.classList.contains('forminput__lookup')) {
-                locationsDiv = nextElement;
-                break;
-            }
-            nextElement = nextElement.nextElementSibling;
-        }
-    }
   });
   
-  let zoneInput = locationsDiv.querySelector("label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
-  let oblastInput = locationsDiv.querySelector("label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
-  let rayonInput = locationsDiv.querySelector("label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
-  let hromadaInput = locationsDiv.querySelector("label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
-  let settlementInput = locationsDiv.querySelector("label:nth-child(5) > div > div.field__border > div.field__wrap > input[type=text]");
-  
-  // let zoneInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
-  // let oblastInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
-  // let rayonInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
-  // let hromadaInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
-  // let settlementInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div > form > div.forminput__field__subreference > div.forminput__field > div.forminput__lookup > label:nth-child(5) > div > div.field__border > div.field__wrap > input[type=text]");
+  let dateInput = document.querySelector("#formfield-csapm2ilz6z3w795");
+  let donorInput = document.querySelector("body > div:nth-child(6) > div > div.page.page--fullwidth > div.page__body > div > div.forminput__inner > form > div:nth-child(4) > div.forminput__field > div.field.field--text > div.field__border > div.field__wrap > input[type=text]");
+  let oblastInput = locationsDiv.querySelector("label:nth-child(1) > div > div.field__border > div.field__wrap > input[type=text]");
+  let rayonInput = locationsDiv.querySelector("label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
+  let hromadaInput = locationsDiv.querySelector("label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
+  let settlementInput = locationsDiv.querySelector("label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
 
-  return { zoneInput, oblastInput, rayonInput, hromadaInput, settlementInput };
+console.log("donorInput: ", donorInput);
+
+  return { dateInput, donorInput, oblastInput, rayonInput, hromadaInput, settlementInput };
 }
 
 function fillDefaultFields() {
-  let sexButton = document.querySelector("#formfield-cr4ebz3kz2ymc1rm > div:nth-child(2) > label > input[type=radio]");
+  let sexButton = document.querySelector("#formfield-cui5vz2lz6z3w7hf > div:nth-child(1) > label > input[type=radio]");
   sexButton.click();
 
-  let ageButton = document.querySelector("#formfield-clrvlwfkz2yo9zct > div:nth-child(3) > label > input[type=radio]");
+  let ageButton = document.querySelector("#formfield-cbphhirlz6z3w7hj > div:nth-child(5) > label > input[type=radio]");
   ageButton.click();
 };

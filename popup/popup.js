@@ -19,13 +19,14 @@ textInputs.forEach(function (input) {
   input.addEventListener("input", function () {
     myLocation[this.id] = this.value.trim();
     localStorage.setItem("myLocation", JSON.stringify(myLocation));
-  });
+  }); 
 });
 
 myLocation.isAddDefaults = Boolean(localStorage.getItem("isAddDefaultStorage"));
 localStorage.setItem("myLocation", JSON.stringify(myLocation));
 
-const zone = document.getElementById("zone");
+const date = document.getElementById("date");
+const donor = document.getElementById("donor");
 const oblast = document.getElementById("oblast");
 const rayon = document.getElementById("rayon");
 const hromada = document.getElementById("hromada");
@@ -36,7 +37,8 @@ let storageLocation = localStorage.getItem("myLocation");
 if (storageLocation) {
   let storageLocationObj = JSON.parse(storageLocation);
 
-  zone.value = storageLocationObj.zone;
+  date.value = storageLocationObj.date;
+  donor.value = storageLocationObj.donor;
   oblast.value = storageLocationObj.oblast;
   rayon.value = storageLocationObj.rayon;
   hromada.value = storageLocationObj.hromada;
@@ -72,10 +74,10 @@ pasteBtn.addEventListener("click", async () => {
 helpButton.addEventListener("click", () => {
   alert(`
   1. Paste the correct values into the input fields in the extension's pop-up window from
-     https://www.activityinfo.org/app#form/ck21bf1l6qikskj2/table
+     https://www.activityinfo.org/app?locale=uk#form/c2hrlf6lxn84lsmqd4/table
   2. Go to Activityinfo database
   3. Click "New" button
-  4. Click the slider if you want to add a default selection
+  4. Click the slider if you want to add a default selection (Gender: Female; Age group: 60+)
   4. Click "Copy" button
   5. Click "Paste" button
   `);
