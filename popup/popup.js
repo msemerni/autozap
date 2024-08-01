@@ -1,3 +1,59 @@
+// const myApiToken = '4a974f5125e355b0178c9f1c92696d4a';
+// const donorFormID = "ck5wpx2lxn84lsmqi9";
+
+// async function getFormRecordsFromAI(apiToken, formID) {
+//   const url = `https://www.activityinfo.org/resources/form/${formID}/query`;
+
+//   const response = await fetch(url, {
+//     method: 'GET',
+//     headers: {
+//       'Authorization': 'Basic ' + btoa('anything:' + apiToken),
+//       'Content-Type': 'application/json'
+//     }
+//   });
+
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok ' + response.statusText);
+//   }
+
+//   const dataRecords = await response.json();
+//   return dataRecords;
+// }
+
+
+// async function addItemsToSelect() {
+//   const selectElement = document.getElementById('donorSelect');
+//   let allDonors = await getFormRecordsFromAI(myApiToken, donorFormID);
+//   console.log("allDonors", allDonors);
+//   console.log("selectElement", selectElement);
+//   // Clear any existing options
+//   selectElement.innerHTML = '';
+
+//   const emptyDonorOption = document.createElement('option');
+//   emptyDonorOption.value = '';
+//   emptyDonorOption.textContent = '';
+//   emptyDonorOption.disabled = true;
+//   emptyDonorOption.selected = true;
+//   selectElement.appendChild(emptyDonorOption);
+
+//   // Add new options
+//   allDonors.forEach(item => {
+//     console.log("item", item);
+//     if (item.is_active == "Да") {
+//       const option = document.createElement('option');
+//       option.value = item.donor;
+//       option.textContent = item.donor;
+//       selectElement.appendChild(option);
+//       console.log("option", option);
+//     }
+//   });
+
+// }
+
+// addItemsToSelect();
+
+
+
 let isAddDefaultStorageValue = localStorage.getItem("isAddDefaultStorage");
 if (isAddDefaultStorageValue === null) {
   localStorage.setItem("isAddDefaultStorage", "");

@@ -113,13 +113,9 @@ function selectValue(value) {
 function selectLocationInputs() {
   let h4Elements = document.querySelectorAll('h4');
   let locationsDiv = null;
-  let dateDiv = null;
-  let donorDiv = null;
   
   h4Elements.forEach((h4) => {
       let bdiElement = h4.querySelector('bdi');
-
-      console.log("bdiElement: ", bdiElement);
 
       if (
         bdiElement && 
@@ -144,8 +140,6 @@ function selectLocationInputs() {
   let rayonInput = locationsDiv.querySelector("label:nth-child(2) > div > div.field__border > div.field__wrap > input[type=text]");
   let hromadaInput = locationsDiv.querySelector("label:nth-child(3) > div > div.field__border > div.field__wrap > input[type=text]");
   let settlementInput = locationsDiv.querySelector("label:nth-child(4) > div > div.field__border > div.field__wrap > input[type=text]");
-
-console.log("donorInput: ", donorInput);
 
   return { dateInput, donorInput, oblastInput, rayonInput, hromadaInput, settlementInput };
 }
